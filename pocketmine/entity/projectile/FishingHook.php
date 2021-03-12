@@ -302,8 +302,8 @@ class FishingHook extends Projectile{
 					$this->getRidingEntity()->setMotion(new Vector3($d0 * $d8, $d2 * $d8 + sqrt($d6) * 0.08, $d4 * $d8));
 				}
 			}elseif($this->ticksCatchable > 0){
-				$rnd=mt_rand(0,500);
-
+				//$rnd=mt_rand(0,500);
+				$rnd=mt_rand(2,2);
 				/**@var $items Item*/
 				$items = [
 					Item::get(349,0,1), Item::get(460,0,1), Item::get(461,0,1), Item::get(462,0,1)
@@ -315,11 +315,11 @@ class FishingHook extends Projectile{
 					$result->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(15), 4));
 					$result->addEnchantment(new EnchantmentInstance(Enchantment::getEnchantment(17), 3));
 					$this->sendJukeboxPopup($angler, "[釣りAI]§a輝いてる§c§l謎のピッケル§r§aが釣れた！");
-				} else if($rnd>$iur && $rnd <= $isr) {
-					$item = Item::get(378, 0, $amount);
-					$item->setCustomName("§d修復クリーム");
+				} else if($rnd>$iur and $rnd <= $isr) {
+					$result = Item::get(378, 0, 1);
+					$result->setCustomName("§d修復クリーム");
 					$this->sendJukeboxPopup($angler,"[釣りAI]§aねばねばの§c§l修復クリーム§r§aが釣れた！");
-				} else if($rnd > $isr and $rnd <= $ir){
+				} else if($rnd>$isr and $rnd <= $ir){
 					$result = Item::get(mt_rand(500,511), 0, 1);
 					$this->sendJukeboxPopup($angler, "[釣りAI]§aん？これは...§c§lレコード§r§aが釣れた！");
 				}else{
@@ -1363,10 +1363,11 @@ class FishingHook extends Projectile{
 						break;
 					}
 				}
-
-				$nbt=$result->getNamedTag();
-				$nbt->setInt("Fish",1);
-				$result->setNamedTag($nbt);
+				if(isset($result)){
+					$nbt=$result->getNamedTag();
+					$nbt->setInt("Fish",1);
+					$result->setNamedTag($nbt);
+				}
 
 				$ev = new PlayerFishEvent($angler, $this, PlayerFishEvent::STATE_CAUGHT_FISH, $this->random->nextBoundedInt(6) + 1);
 				$ev->call();

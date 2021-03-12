@@ -318,6 +318,8 @@ class StartGamePacket extends DataPacket{
 		$this->putString($this->premiumWorldTemplateId);
 		$this->putBool($this->isTrial);
 		$this->putVarInt($this->playerMovementType);
+		$this->putVarInt(0); // RewindHistorySize
+        $this->putBool(false); // isServerAuthoritativeBlockBreaking
 		$this->putLLong($this->currentTick);
 
 		$this->putVarInt($this->enchantmentSeed);

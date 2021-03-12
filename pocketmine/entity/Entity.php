@@ -215,6 +215,7 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 	public const DATA_RIDER_ROTATION_LOCKED = 57; //byte
 	public const DATA_RIDER_MAX_ROTATION = 58; //float
 	public const DATA_RIDER_MIN_ROTATION = 59; //float
+	public const DATA_RIDER_ROTATION_OFFSET = 60;
 	public const DATA_AREA_EFFECT_CLOUD_RADIUS = 60; //float
 	public const DATA_AREA_EFFECT_CLOUD_WAITING = 61; //int
 	public const DATA_AREA_EFFECT_CLOUD_PARTICLE_ID = 62; //int
